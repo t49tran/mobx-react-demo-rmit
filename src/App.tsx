@@ -1,25 +1,22 @@
+import { CssBaseline } from '@material-ui/core';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { UsersContainer } from './containers/UsersContainer';
+import { createStore, StoreContext } from './stores';
 
 function App() {
+  const store = createStore();
+
+  // We are using provider / consumer pattern
+  // StoreContext is a React Context -> StoreContext = React.createContext({...})
+  // Provider -> Consumer
+  // React context / Redux / Mobx
+  // StoreContext.Consumer
+  // hook useContext -> useStore = () => useContext(StoreContext)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StoreContext.Provider value={store}>
+      <CssBaseline />
+      <UsersContainer />
+    </StoreContext.Provider>
   );
 }
 
